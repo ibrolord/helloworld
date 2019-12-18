@@ -1,0 +1,24 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrolord/helloworld.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibrolord/helloworld/issues"
+  },
+  "homepage": "https://github.com/ibrolord/helloworld#readme",
+  "devDependencies": {
+    "mocha": "^2.5.3",
+    "zombie": "^6.1.4"
+  }
+}
