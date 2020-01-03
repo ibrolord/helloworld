@@ -1,8 +1,12 @@
 version: 0.0
 os: linux
 files:
+  - source: conf/logrotate
+    destination: /etc/logrotate.d/helloworld
   - source: helloworld.js
     destination: /usr/local/helloworld/
+  - source: node_modules
+    destination: /usr/local/helloworld/node_modules
 
 files:
   - source: helloworld.js
@@ -19,3 +23,6 @@ hooks:
       timeout: 30
   ValidateService:
     - location: scripts/validate.sh
+  AfterInstall:
+    - location: scripts/setversion.sh
+      timeout: 180
