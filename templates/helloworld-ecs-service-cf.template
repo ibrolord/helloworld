@@ -101,6 +101,14 @@
                 "ContainerDefinitions": [
                     {
                         "Cpu": 256,
+                        "Environment": [
+                            {
+                                "Name": "HELLOWORLD_VERSION",
+                                "Value": {
+                                    "Ref": "Tag"
+                                }
+                            }
+                        ],
                         "Image": {
                             "Fn::Join": [
                                 "",
@@ -123,6 +131,15 @@
                                     }
                                 ]
                             ]
+                        },
+                        "LogConfiguration": {
+                            "LogDriver": "awslogs",
+                            "Options": {
+                                "awslogs-group": "/aws/ecs/helloworld",
+                                "awslogs-region": {
+                                    "Ref": "AWS::Region"
+                                }
+                            }
                         },
                         "Memory": 32,
                         "Name": "helloworld",
