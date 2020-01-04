@@ -1,5 +1,7 @@
 var http = require("http")
 var winston = require("winston")
+var WFirehose = require('winston-firehose')
+var hostname = process.env.HOSTNAME
 var AWS = require("aws-sdk")
 
 AWS.config.update({region:"us-east-1"})
@@ -9,12 +11,23 @@ var cw = new AWS.Cloudwatch({apiVersion: "2010-08-01"})
 
 var version = process.env.HELLOWORLD_VERSION 
 
+/*
 var logger = new winston.Logger({ 
   transports: [new winston.transports.Console({ 
     timestamp: function() { 
        var d = new Date()
        return d.toISOString()
     }, 
+  })] 
+}) 
+*/
+
+var logger = new winston.Logger({ 
+  transports: [new WFirehose({ 
+    'streamName': 'FirehoseLogs',
+    'firehoseOption': {
+       'region': 'us-east-1'
+    }
   })] 
 }) 
 
@@ -30,6 +43,8 @@ var metric = {
 
 logger.rewriters.push(function(level, msg, meta) { 
   meta.version = version 
+  meta.hostname = hostname
+  meta.appname = "helloworld"
   return meta 
 }) 
 

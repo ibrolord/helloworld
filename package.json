@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.597.0",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "winston-firehose": "1.0.6"
   }
 }
